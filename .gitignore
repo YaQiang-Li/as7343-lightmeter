@@ -1,0 +1,14 @@
+# Byte-compiled
+__pycache__/
+*.pyc
+
+# Python virtual env on the Pi
+.venv/
+
+# Generated from the ams EvalSW template; ams material must not be
+# redistributed, generate it locally with tools/extract_ams_cal.py
+cal/ams_golden.json
+
+# Per-device lux calibration and measurement records
+cal/user.json
+data/

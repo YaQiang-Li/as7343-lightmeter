@@ -237,14 +237,18 @@ function drawTrend() {
 	if (trend.length < 2) return;
 	const now = Date.now() / 1000, v = trend.map(p => p[1]);
 	let lo = Math.min(...v), hi = Math.max(...v);
-	if (hi - lo < hi * 0.02 + 0.1) { const m = (hi + lo) / 2; lo = m - (m * 0.01 + 0.05); hi = m + (m * 0.01 + 0.05); }
+	// at least ±10 % of the level: slow drifts of a few % stay nearly flat
+	const mid = (hi + lo) / 2, half = Math.max((hi - lo) / 2, mid * 0.1 + 0.05);
+	lo = mid - half; hi = mid + half;
 	ctx.strokeStyle = '#5aa9ff'; ctx.lineWidth = 2; ctx.beginPath();
 	trend.forEach(([t, l], i) => {
 		const px = W - (now - t) / 60 * W, py = H - 3 - (l - lo) / (hi - lo) * (H - 6);
 		i ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
 	});
 	ctx.stroke();
-	$('trendS').textContent = `最近 60 秒照度：${fmt(Math.min(...v))} – ${fmt(Math.max(...v))} lx`;
+	const pct = v[0] > 0 ? (v[v.length - 1] / v[0] - 1) * 100 : 0;
+	$('trendS').textContent = `最近 60 秒照度：${fmt(Math.min(...v))} – ${fmt(Math.max(...v))} lx`
+		+ `（${pct >= 0 ? '+' : ''}${pct.toFixed(1)}%）`;
 }
 
 function connect() {

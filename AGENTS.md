@@ -10,6 +10,7 @@
 | `lightmeter.py` | 命令行入口与全部算法（光谱重建、色度、显色、闪烁、评价） |
 | `webui.py` | Web 服务（标准库 http.server + SSE），独占传感器线程，只做调度和 HTTP，不放算法 |
 | `web/index.html` | 手机端页面，单文件（HTML/CSS/JS 内联），不引第三方前端库 |
+| `web/preview.png` | 页面截图，README 引用；页面改版后同步更新 |
 | `data/records.jsonl` | Web 端「记录本点」的测量记录，运行时生成，不进 git、不随部署覆盖 |
 | `tools/as7343-web.service` | systemd 单元模板，安装到 Pi 的 `/etc/systemd/system/` |
 | `cal/ams_golden.json` | ams Golden Device 标定矩阵，**由 `tools/extract_ams_cal.py` 生成，不手改、不进 git**（ams 资料不可转发） |

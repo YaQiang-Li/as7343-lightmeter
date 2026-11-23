@@ -5,6 +5,10 @@
 *Indoor light quality meter (illuminance, CCT, Duv, CRI, TM-30, flicker) built on the AS7343 spectral sensor and a
 Raspberry Pi, with a live phone-friendly web UI.*
 
+<p align="center">
+	<img src="web/preview.png" alt="手机实时页面预览" width="320">
+</p>
+
 | 类别 | 指标 |
 | --- | --- |
 | 光度/色度 | 照度 lx、CCT（Ohno 2013）、Duv、CIE 1931 x,y、CIE 1976 u'v' |
